@@ -5,7 +5,7 @@ $rawData = file_get_contents('php://input');
 $data = json_decode($rawData);
 
 $sql = "update hp set " .
-       "  tipe='" . $data->tipe . "' " .
+       "  tipe='" . $data->tipe . "'," .
        "  tahun='" . $data->tahun . "' " .
        "where merek='" . $data->merek . "'";
 $result = pg_query($sql);
