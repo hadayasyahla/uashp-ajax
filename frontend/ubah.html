@@ -14,10 +14,6 @@
                     <h1 class="text-center mt-5" style="color: black;">Formulir Ubah Data HP</h1>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="id">id</label>
-                                <input type="text" name="id" id="id" class="form-control" placeholder="Masukkan Id..." required>
-                            </div>
-                            <div class="form-group">
                                 <label for="merek">merek</label>
                                 <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek HP..." required>
                             </div>
@@ -41,17 +37,16 @@
     $(document).ready(function() {
         var param = window.location.search;
         var urlParam = new URLSearchParams(param);
-        var id = urlParam.get("id");
-        console.log(id);
+        var merek = urlParam.get("merek");
+        console.log(merek);
 
         var data = new Object();
-        data.id = id;
+        data.merek = merek;
 
         $.post('../backend/get-data-by-judul.php', 
             JSON.stringify(data), 
             function(resp) {
                 var dataDetail = JSON.parse(resp);
-                $("#id").val(dataDetail.id);
                 $("#merek").val(dataDetail.merek);
                 $("#tipe").val(dataDetail.tipe);
                 $("#tahun").val(dataDetail.tahun);
@@ -60,7 +55,6 @@
 
     $(document).on('click', "#simpan", function() {
         var srt = new Object();
-        srt.id = $("#id").val();
         srt.merek = $("#merek").val();
         srt.tipe = $("#tipe").val();
         srt.tahun = $("#tahun").val();

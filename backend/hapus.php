@@ -4,9 +4,9 @@ require_once '../koneksi.php';
 $raw = file_get_contents('php://input');
 $data = json_decode($raw);
 
-// echo json_encode($data->id);
+// echo json_encode($data->merek);
 
-$sql = "delete from hp where id='" . $data->id . "'";
+$sql = "delete from hp where merek='" . $data->merek . "'";
 $result = pg_query($sql);
 $row = pg_affected_rows($result);
 

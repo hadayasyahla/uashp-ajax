@@ -17,7 +17,6 @@
                         <table class="table table-bordered table-danger" >
                             <thead>
                                 <tr>
-                                    <td>Id</td>
                                     <td>merek</td>
                                     <td>tipe</td>
                                     <td>tahun</td>
@@ -46,12 +45,11 @@
                 resultTag = "";
                 for(i=0; i<result.length; i++) {
                     resultTag += "<tr>" +
-                        "<td>" + result[i].id + "</td>" +
                         "<td>" + result[i].merek + "</td>" +
                         "<td>" + result[i].tipe + "</td>" +
                         "<td>" + result[i].tahun + "</td>" +
-                        '<td><button type="button" class="btn btn-primary" id="hapus" id="' + result[i].id + '">Hapus</button>&nbsp;' +
-                        '<button type="button" class="btn btn-info" id="edit" id="' + result[i].id + '">Ubah</button></td>' +
+                        '<td><button type="button" class="btn btn-primary" id="hapus" merek="' + result[i].merek + '">Hapus</button>&nbsp;' +
+                        '<button type="button" class="btn btn-info" id="edit" merek="' + result[i].merek + '">Ubah</button></td>' +
                         "</tr>";
                 }
                 $("#isi").html(resultTag);
@@ -60,10 +58,10 @@
     });
 
     $(document).on('click', "#hapus", function() {
-        var id = $(this).attr("id");
-        console.log(id);
+        var merek = $(this).attr("merek");
+        console.log(merek);
         var param = new Object();
-        param.id = id;
+        param.merek = merek;
         $.post("../backend/hapus.php", JSON.stringify(param), 
           function(resp) {
             var obj = JSON.parse(resp);
@@ -77,8 +75,8 @@
     });
 
     $(document).on('click', '#edit', function() {
-        var id = $(this).attr('id');
-        window.location.href = "./ubah.html?id=" + id;
+        var merek = $(this).attr('merek');
+        window.location.href = "./ubah.html?merek=" + merek;
     });
 </script>        
     </body>

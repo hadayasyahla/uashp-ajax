@@ -6,8 +6,7 @@ $data = json_decode($raw);
 
 // echo $data->id;
 
-$sql = "insert into hp(id, merek, tipe, tahun) values('" .
-    $data->id . "','" . $data->merek . "','" . $data->tipe . "','" . $data->tahun . "')";
+$sql = "insert into hp(merek, tipe, tahun) values('" . $data->merek . "','" . $data->tipe . "','" . $data->tahun . "')";
 $result = pg_query($sql);
 $row = pg_affected_rows($result);
 $obj = new stdClass();
